@@ -1,0 +1,18 @@
+# References page (/references/). The page and its nav link appear once this
+# list has entries. Entries are grouped by `kind` in the order kinds first appear.
+#
+# A link (talk, article, podcast, book, paper...):
+# - kind: Talks
+#   title: "Making AI agents enterprise-safe"
+#   source: "Conference name"
+#   year: 2026
+#   url: https://example.com
+#   note: "Optional one-line description."
+#
+# A recommendation / testimonial (rendered as a quote):
+# - kind: Recommendations
+#   quote: "Tanmya is the engineer you want on ..."
+#   author: "Name"
+#   role: "Engineering Manager, Company"
+#   url: https://www.linkedin.com/...   # optional
+[]

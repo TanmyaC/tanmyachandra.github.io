@@ -1,0 +1,43 @@
+---
+layout: default
+title: References
+permalink: /references/
+description: Talks, writing and recommendations.
+---
+{%- assign refs = site.data.references %}
+{%- assign kinds = refs | map: "kind" | uniq %}
+<section class="section">
+  <div class="wrap">
+    <div class="section__head">
+      <p class="eyebrow">~/references</p>
+      <h2>References</h2>
+      <p class="section__aside">Talks, writing, and what people I've worked with say.</p>
+    </div>
+
+    {%- if refs.size == 0 %}
+    <p class="empty mono">// nothing here yet</p>
+    {%- endif %}
+
+    {%- for kind in kinds %}
+    <h3 class="ref-kind mono">// {{ kind | downcase }}</h3>
+    <ul class="ref-list">
+      {%- for r in refs %}{% if r.kind == kind %}
+      {%- if r.quote %}
+      <li class="card ref ref--quote">
+        <blockquote>“{{ r.quote }}”</blockquote>
+        <p class="small"><strong>{{ r.author }}</strong>{% if r.role %} <span class="muted">· {{ r.role }}</span>{% endif %}{% if r.url %} · <a class="accent" href="{{ r.url }}" target="_blank" rel="noopener">source</a>{% endif %}</p>
+      </li>
+      {%- else %}
+      <li class="card ref">
+        <a href="{{ r.url }}" target="_blank" rel="noopener">
+          <span class="ref__title">{{ r.title }} {% include icon.html name="external" size=13 %}</span>
+          <span class="mono muted small">{{ r.source }}{% if r.year %} · {{ r.year }}{% endif %}</span>
+          {%- if r.note %}<span class="ref__note">{{ r.note }}</span>{% endif %}
+        </a>
+      </li>
+      {%- endif %}
+      {%- endif %}{% endfor %}
+    </ul>
+    {%- endfor %}
+  </div>
+</section>

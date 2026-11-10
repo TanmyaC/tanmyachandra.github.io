@@ -1,0 +1,25 @@
+{%- assign home = '/' | relative_url -%}
+{%- if page.url == '/' -%}{%- assign home = '' -%}{%- endif -%}
+<header class="nav">
+  <div class="wrap nav__inner">
+    <a class="brand" href="{{ '/' | relative_url }}" aria-label="Home">
+      <span class="brand__mark">TC</span>
+      <span class="brand__name">{{ site.handle }}</span>
+    </a>
+    <button class="nav__toggle" aria-expanded="false" aria-controls="nav-links" aria-label="Menu">{% include icon.html name="menu" size=20 %}</button>
+    <nav id="nav-links" class="nav__links">
+      <a href="{{ home }}#themes">Themes</a>
+      <a href="{{ home }}#experience">Experience</a>
+      <a href="{{ home }}#skills">Skills</a>
+      <a href="{{ home }}#projects">Projects</a>
+      <a href="{{ home }}#women-in-engineering">Women in Eng</a>
+      {%- if site.posts.size > 0 %}
+      <a href="{{ '/blog/' | relative_url }}"{% if page.url contains '/blog/' %} aria-current="page"{% endif %}>Blog</a>
+      {%- endif %}
+      {%- if site.data.references.size > 0 %}
+      <a href="{{ '/references/' | relative_url }}"{% if page.url == '/references/' %} aria-current="page"{% endif %}>References</a>
+      {%- endif %}
+      <a class="btn btn--pill" href="{{ home }}#contact">Say hi</a>
+    </nav>
+  </div>
+</header>

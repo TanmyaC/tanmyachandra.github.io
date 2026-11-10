@@ -1,0 +1,36 @@
+title: Tanmya Chandra
+handle: tanmya.chandra
+description: >-
+  Senior Software Engineer on Miro's Enterprise Platform. I build enterprise
+  platforms and the AI agents on them.
+location: Amsterdam, Netherlands
+email: tanmyachandra@gmail.com
+linkedin: https://www.linkedin.com/in/YOUR-LINKEDIN-HANDLE   # TODO
+resume: /assets/Tanmya-Chandra-Resume.pdf                     # drop the PDF here
+
+# Leave both empty for a user site (https://<username>.github.io).
+# For a project site the GitHub Actions workflow sets baseurl automatically.
+url: ""
+baseurl: ""
+
+permalink: /blog/:year/:month/:title/
+timezone: Europe/Amsterdam
+markdown: kramdown
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+
+exclude:
+  - README.md
+  - Gemfile
+  - Gemfile.lock
+  - vendor
+  - .github
+
+defaults:
+  - scope: { path: "", type: posts }
+    values: { layout: post }
+
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag

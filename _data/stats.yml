@@ -1,0 +1,5 @@
+- { value: "10+ yrs", label: "building B2B platforms", color: text }
+- { value: "−25%", label: "time to first PR review", color: violet }
+- { value: "45→70%", label: "same-day domain verification", color: orange }
+- { value: "185→23", label: "DB calls per request, mid-incident", color: teal }
+- { value: "500K+", label: "orphaned records cleaned up", color: pink }

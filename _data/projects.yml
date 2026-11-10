@@ -1,0 +1,22 @@
+# TODO: replace the placeholders. icon: phone | chart | globe. Leave code/demo empty to hide a link.
+- name: "[Side project]"
+  description: "[What it does and why you built it.]"
+  tech: ["[Tech]", "[Tech]"]
+  icon: phone
+  color: violet
+  code: ""
+  demo: ""
+- name: "[Side project]"
+  description: "[What it does and why you built it.]"
+  tech: ["[Tech]", "[Tech]"]
+  icon: chart
+  color: orange
+  code: ""
+  demo: ""
+- name: "[Side project]"
+  description: "[What it does and why you built it.]"
+  tech: ["[Tech]", "[Tech]"]
+  icon: globe
+  color: teal
+  code: ""
+  demo: ""

@@ -1,0 +1,281 @@
+---
+layout: default
+---
+{%- assign n = 0 -%}
+
+<!-- Hero -->
+<section class="hero">
+  <div class="wrap hero__grid">
+    <div>
+      <p class="hero__hello mono">&gt; hello, world — Amsterdam, NL<span class="caret">_</span></p>
+      <h1 class="hero__title">
+        I’m Tanmya.<br>
+        <span class="accent">I build enterprise platforms</span><br>
+        &amp; the AI agents on them.
+      </h1>
+      <p class="hero__lede">Senior Software Engineer on Miro's Enterprise Platform. For 10+ years I've turned manual enterprise processes into secure, self-serve products that scale to millions of users. I also founded <strong>Women in Engineering at Miro</strong>.</p>
+      <div class="hero__cta">
+        <a class="btn btn--primary" href="#themes">Explore my work {% include icon.html name="arrow" size=14 %}</a>
+        <a class="btn btn--ghost" href="{{ site.resume | relative_url }}" download>Résumé {% include icon.html name="download" size=14 %}</a>
+        <a class="btn btn--ghost btn--icon" href="{{ site.linkedin }}" aria-label="LinkedIn" rel="me noopener" target="_blank">{% include icon.html name="linkedin" size=16 %}</a>
+      </div>
+    </div>
+
+    <div class="hero__art" aria-hidden="true">
+      <div class="orbit"><span class="orbit__dot orbit__dot--a"></span><span class="orbit__dot orbit__dot--b"></span></div>
+      <div class="chat">
+        <div class="chat__head">{% include icon.html name="check" size=11 class="chat__badge" %} Admin assistant</div>
+        <div class="chat__q">Who can access this team?</div>
+        <div class="chat__tool mono"><span class="c-teal">→</span> tool: get_team_members()</div>
+        <div class="chat__tool mono"><span class="c-teal">✓</span> as you · per-field authz</div>
+        <div class="chat__answer"><span></span><span></span></div>
+      </div>
+      <div class="pill pill--leaks"><span class="pill__lock">{% include icon.html name="lock" size=12 %}</span> no data leaks</div>
+      <div class="pill pill--calls mono"><span class="c-orange">185 → 23</span> <span class="muted">db calls</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- Stats -->
+<section class="stats">
+  <div class="wrap stats__grid">
+    {%- for s in site.data.stats %}
+    <div class="stat">
+      <div class="stat__value c-{{ s.color }}">{{ s.value }}</div>
+      <div class="stat__label">{{ s.label }}</div>
+    </div>
+    {%- endfor %}
+  </div>
+</section>
+
+<!-- 01 Themes -->
+{%- assign n = n | plus: 1 %}
+<section class="section" id="themes">
+  <div class="wrap">
+    <div class="section__head section__head--split">
+      <div>
+        <p class="eyebrow">0{{ n }}. themes</p>
+        <h2>What I work on, by theme</h2>
+      </div>
+      <p class="section__aside">Six threads run through my work on Miro's Enterprise Platform. Pick one to see what I built and what it changed.</p>
+    </div>
+
+    <div class="tabs" role="tablist" aria-label="Themes">
+      {%- for t in site.data.themes %}
+      <button class="chip chip--tab" role="tab" id="tab-{{ t.id }}" aria-controls="panel-{{ t.id }}" aria-selected="{% if forloop.first %}true{% else %}false{% endif %}" tabindex="{% if forloop.first %}0{% else %}-1{% endif %}" data-theme="{{ t.id }}"><span class="dot bg-{{ t.color }}"></span>{{ t.name }}</button>
+      {%- endfor %}
+    </div>
+
+    {%- for t in site.data.themes %}
+    <div class="theme" role="tabpanel" id="panel-{{ t.id }}" aria-labelledby="tab-{{ t.id }}"{% unless forloop.first %} hidden{% endunless %}>
+      <div class="theme__main">
+        <p class="mono kicker c-{{ t.color }}">{{ t.kicker }}</p>
+        <h3>{{ t.headline }}</h3>
+        <ul class="bullets">
+          {%- for p in t.points %}<li>{{ p | markdownify | remove: '<p>' | remove: '</p>' }}</li>{% endfor %}
+        </ul>
+        <div class="tags">{% for tag in t.tags %}<span class="tag">{{ tag }}</span>{% endfor %}</div>
+      </div>
+      <div class="theme__side">
+        <p class="mono muted small">// {{ t.panel_title }}</p>
+        {%- if t.guards %}
+        <ol class="guards">
+          {%- for g in t.guards %}
+          <li style="--i: {{ forloop.index0 }}"{% if forloop.last %} class="is-last"{% endif %}><span class="mono">0{{ forloop.index }}</span> {{ g }}</li>
+          {%- endfor %}
+        </ol>
+        {%- else %}
+        <ul class="panel-list">
+          {%- for g in t.panel_items %}<li><span class="dot bg-{{ t.color }}"></span>{{ g }}</li>{% endfor %}
+        </ul>
+        {%- endif %}
+      </div>
+    </div>
+    {%- endfor %}
+  </div>
+</section>
+
+<!-- 02 Experience -->
+{%- assign n = n | plus: 1 %}
+{%- assign now_s = site.time | date: "%s" | plus: 0 %}
+{%- assign jobs_oldest_first = site.data.experience | reverse %}
+<section class="section" id="experience">
+  <div class="wrap">
+    <div class="section__head">
+      <p class="eyebrow">0{{ n }}. experience</p>
+      <h2>Ten years, five companies</h2>
+    </div>
+
+    <div class="career-bar" aria-hidden="true">
+      {%- for j in jobs_oldest_first %}
+        {%- assign s = j.start | date: "%s" | plus: 0 %}
+        {%- if j.end == "present" %}{% assign e = now_s %}{% else %}{% assign e = j.end | date: "%s" | plus: 0 %}{% endif %}
+        {%- assign days = e | minus: s | divided_by: 86400 %}
+      <span class="bg-{{ j.color }}" style="flex-grow: {{ days }}" title="{{ j.short }}"></span>
+      {%- endfor %}
+    </div>
+    <ul class="legend">
+      {%- for j in jobs_oldest_first %}<li><span class="sq bg-{{ j.color }}"></span>{{ j.short }}</li>{% endfor %}
+    </ul>
+
+    <ol class="timeline">
+      {%- for j in site.data.experience %}
+      <li class="job{% if forloop.first %} job--current{% endif %}" style="--c: var(--{{ j.color }})">
+        <div class="job__card">
+          <div class="job__meta"><span class="date mono">{{ j.dates }}</span><span class="muted small">{{ j.location }}</span></div>
+          <h3 class="job__title">{{ j.role }} <span class="accent">@ {{ j.company }}</span></h3>
+          {%- if j.summary %}<p class="job__summary">{{ j.summary }}</p>{% endif %}
+          {%- if j.points %}
+          <ul class="bullets bullets--ring">
+            {%- for p in j.points %}<li>{{ p | markdownify | remove: '<p>' | remove: '</p>' }}</li>{% endfor %}
+          </ul>
+          {%- endif %}
+          {%- if j.themes %}
+          <div class="job__themes"><span class="muted small">Themes:</span>
+            {%- for t in site.data.themes %}<a class="chip chip--sm" href="#themes" data-theme-link="{{ t.id }}"><span class="dot bg-{{ t.color }}"></span>{{ t.name }}</a>{% endfor %}
+          </div>
+          {%- endif %}
+          {%- if j.stack %}<p class="job__stack mono">{{ j.stack }}</p>{% endif %}
+        </div>
+      </li>
+      {%- endfor %}
+    </ol>
+
+    <p class="edu">{% include icon.html name="cap" size=16 class="c-teal" %} {{ site.data.skills.education }}</p>
+  </div>
+</section>
+
+<!-- 03 Skills -->
+{%- assign n = n | plus: 1 %}
+{%- assign sk = site.data.skills %}
+<section class="section" id="skills">
+  <div class="wrap">
+    <div class="section__head">
+      <p class="eyebrow">0{{ n }}. skills</p>
+      <h2>My toolbox</h2>
+    </div>
+    <div class="skill-feature">
+      <div class="skill-feature__name"><span class="skill-feature__badge mono">AI</span>{{ sk.featured.name }}</div>
+      <div class="tags">{% for i in sk.featured.items %}<span class="tag tag--on-accent">{{ i }}</span>{% endfor %}</div>
+    </div>
+    <div class="skill-grid">
+      {%- for g in sk.groups %}
+      <div class="card skill">
+        <h3 class="skill__name"><span class="skill__icon c-{{ g.color }}">{% include icon.html name=g.icon size=14 %}</span>{{ g.name }}</h3>
+        <div class="tags">{% for i in g.items %}<span class="tag tag--square">{{ i }}</span>{% endfor %}</div>
+      </div>
+      {%- endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- 04 Projects -->
+{%- assign n = n | plus: 1 %}
+<section class="section" id="projects">
+  <div class="wrap">
+    <div class="section__head">
+      <p class="eyebrow">0{{ n }}. personal_projects</p>
+      <h2>Built for fun</h2>
+    </div>
+    <div class="project-grid">
+      {%- for p in site.data.projects %}
+      <article class="card project">
+        <div class="project__top">
+          <span class="project__icon bg-{{ p.color }}">{% include icon.html name=p.icon size=20 %}</span>
+          <span class="project__links">
+            {%- if p.code != "" %}<a href="{{ p.code }}" aria-label="Source code" target="_blank" rel="noopener">{% include icon.html name="code" %}</a>{% else %}<span class="is-off">{% include icon.html name="code" %}</span>{% endif %}
+            {%- if p.demo != "" %}<a href="{{ p.demo }}" aria-label="Live demo" target="_blank" rel="noopener">{% include icon.html name="external" %}</a>{% else %}<span class="is-off">{% include icon.html name="external" %}</span>{% endif %}
+          </span>
+        </div>
+        <h3>{{ p.name }}</h3>
+        <p>{{ p.description }}</p>
+        <p class="mono muted small">{{ p.tech | join: " · " }}</p>
+      </article>
+      {%- endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- 05 Women in Engineering -->
+{%- assign n = n | plus: 1 %}
+{%- assign wie = site.data.wie %}
+<section class="section wie" id="women-in-engineering">
+  <div class="wrap">
+    <div class="wie__intro">
+      <div>
+        <p class="eyebrow">0{{ n }}. women_in_engineering</p>
+        <h2>Lifting as we climb.</h2>
+        <p class="wie__lede">I'm the <strong>Founder &amp; Convenor of Women in Engineering at Miro</strong>, a community I started for the growth, confidence and career success of women engineers.</p>
+        <div class="tags">
+          <span class="badge bg-wie-purple">Growth</span>
+          <span class="badge bg-wie-orange">Confidence</span>
+          <span class="badge bg-wie-teal">Career success</span>
+        </div>
+      </div>
+      {% include wie-art.html %}
+    </div>
+
+    <div class="wie__pillars">
+      {%- for p in wie.pillars %}
+      <div class="wie-card{% if forloop.first %} wie-card--feature{% endif %} wie-c{{ forloop.index }}">
+        {% include icon.html name=p.icon size=22 %}
+        <h3>{{ p.title }}</h3>
+        <p>{{ p.text }}</p>
+      </div>
+      {%- endfor %}
+    </div>
+
+    <p class="mono wie__sub">// workshops I've run</p>
+    <ol class="workshops">
+      {%- for w in wie.workshops %}
+      <li class="wie-card wie-c{{ forloop.index }}"><span class="num">0{{ forloop.index }}</span>{{ w }}</li>
+      {%- endfor %}
+    </ol>
+
+    <figure class="quote">
+      <span class="quote__mark" aria-hidden="true">“</span>
+      <div>
+        <blockquote>{{ wie.quote.text }}</blockquote>
+        <figcaption>— {{ wie.quote.author }}</figcaption>
+      </div>
+    </figure>
+  </div>
+</section>
+
+<!-- Writing (shows once there are posts in _posts/) -->
+{%- if site.posts.size > 0 %}
+{%- assign n = n | plus: 1 %}
+<section class="section" id="writing">
+  <div class="wrap">
+    <div class="section__head section__head--split">
+      <div>
+        <p class="eyebrow">0{{ n }}. writing</p>
+        <h2>Notes from the platform</h2>
+      </div>
+      <a class="btn btn--ghost" href="{{ '/blog/' | relative_url }}">All posts {% include icon.html name="arrow" size=14 %}</a>
+    </div>
+    {% include post-list.html posts=site.posts limit=3 %}
+  </div>
+</section>
+{%- endif %}
+
+<!-- Contact -->
+{%- assign n = n | plus: 1 %}
+<section class="section" id="contact">
+  <div class="wrap">
+    <div class="contact">
+      <div class="contact__rings" aria-hidden="true"><span></span><span></span><span></span></div>
+      <div>
+        <p class="mono small">0{{ n }}. contact</p>
+        <h2>Let’s talk enterprise platforms, AI agents, or who gets to build them.</h2>
+      </div>
+      <div class="contact__actions">
+        <a class="btn btn--dark" href="mailto:{{ site.email }}">{{ site.email }}</a>
+        <div class="contact__row">
+          <a class="btn btn--outline-dark" href="{{ site.linkedin }}" target="_blank" rel="me noopener">LinkedIn</a>
+          <a class="btn btn--outline-dark" href="{{ site.resume | relative_url }}" download>Résumé</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

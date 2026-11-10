@@ -1,0 +1,12 @@
+<ul class="post-list">
+  {%- for post in include.posts limit: include.limit %}
+  <li>
+    <a class="card post-card" href="{{ post.url | relative_url }}">
+      <p class="mono muted small">{{ post.date | date: "%-d %b %Y" }}{% if post.tags.size > 0 %} · {{ post.tags | join: " · " }}{% endif %}</p>
+      <h3>{{ post.title }}</h3>
+      <p>{{ post.description | default: post.excerpt | strip_html | truncatewords: 32 }}</p>
+      <span class="post-card__more accent">Read {% include icon.html name="arrow" size=14 %}</span>
+    </a>
+  </li>
+  {%- endfor %}
+</ul>

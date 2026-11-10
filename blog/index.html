@@ -1,0 +1,19 @@
+---
+layout: default
+title: Blog
+description: Writing on enterprise platforms, AI agents and engineering culture.
+---
+<section class="section">
+  <div class="wrap">
+    <div class="section__head">
+      <p class="eyebrow">~/blog</p>
+      <h2>Notes from the platform</h2>
+      <p class="section__aside">Enterprise platforms, AI agents, and the people who build them.</p>
+    </div>
+    {%- if site.posts.size > 0 %}
+    {% include post-list.html posts=site.posts limit=1000 %}
+    {%- else %}
+    <p class="empty mono">// first post coming soon</p>
+    {%- endif %}
+  </div>
+</section>

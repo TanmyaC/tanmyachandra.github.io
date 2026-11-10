@@ -1,0 +1,59 @@
+# Newest first. `start`/`end` (YYYY-MM-DD, or end: present) size the timeline bar.
+- company: Miro
+  short: Miro 2022–now
+  color: violet
+  role: Senior Software Engineer, Enterprise Platform
+  dates: Jan 2022 — Present
+  start: 2022-01-01
+  end: present
+  location: Amsterdam
+  summary: User management, provisioning, policies and admin controls for millions of users across some of the world's largest organizations.
+  themes: true
+  stack: LLM tool calling · Java · Kotlin (coroutines) · Spring · gRPC · PostgreSQL · DynamoDB · OpenSearch · Kafka · Temporal · AWS
+
+- company: TBA Group
+  short: TBA Group 2021
+  color: orange
+  role: Senior Software Engineer
+  dates: Jun 2021 — Dec 2021
+  start: 2021-06-01
+  end: 2021-12-31
+  location: Delft
+  summary: Built backend software for container terminal and logistics operations, bringing real-time logistics platform experience to port and terminal systems.
+
+- company: Turvo
+  short: Turvo 2018–21
+  color: teal
+  role: Senior Software Engineer
+  dates: May 2018 — May 2021
+  start: 2018-05-01
+  end: 2021-05-31
+  location: India
+  points:
+    - "**Built the core of Marketplace**, a new product where shippers and carriers find each other and negotiate offers."
+    - "**Expanded the platform to multi-modal transport** by redesigning the core shipments model; built ETA and running-late predictions on Google and HERE maps."
+    - "**Eliminated manual onboarding** with self-service document templates, and de-risked database releases with a SQL/NoSQL change-management tool adopted team-wide."
+  stack: Java · Spring · MongoDB · ArangoDB · MySQL · Redis · Python
+
+- company: Oracle
+  short: Oracle 2015–18
+  color: pink
+  role: Application Developer, HCM Payroll
+  dates: Sep 2015 — May 2018
+  start: 2015-09-01
+  end: 2018-05-31
+  location: Hyderabad
+  points:
+    - "**Led the Dutch PGGM pension report** so Netherlands customers could meet government reporting requirements."
+    - "**Brought self-service payslips to mobile** across all EMEA localizations, for organizations with hundreds of thousands of employees."
+  stack: PL/SQL · Oracle R12 · Java (OAF, MAF)
+
+- company: Infosys
+  short: Infosys 2014
+  color: slate
+  role: Systems Engineer, Morgan Stanley Wealth Management
+  dates: Jul 2014 — Aug 2015
+  start: 2014-07-01
+  end: 2015-08-31
+  location: Bengaluru
+  summary: Built batch-processing automation that the client expanded into a larger joint development effort.

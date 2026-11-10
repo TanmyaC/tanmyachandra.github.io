@@ -1,0 +1,11 @@
+pillars:
+  - { title: Founded the community, icon: star, text: "Started and lead Women in Engineering at Miro: a space for women engineers to grow, build confidence and move their careers forward." }
+  - { title: Mentoring, icon: people, text: "I mentor engineers to deliver high-impact initiatives with sound engineering practices." }
+  - { title: Hiring, icon: monitor, text: "I lead system-design and graduate interview loops and write live-coding interview questions." }
+
+workshops: [Authorization, AI-assisted PR reviews, Onboarding, Giving & receiving feedback]
+
+# TODO
+quote:
+  text: "[A quote from a community member, or your own line on why this work matters to you.]"
+  author: "[Name, role]"
