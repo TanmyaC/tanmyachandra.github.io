@@ -1,23 +1,25 @@
+# icon: any name in _includes/icon.html · tone: blue | amber | green | red
 featured:
   name: AI-native engineering
+  icon: sparkle
   items: [Agentic AI, LLM tool design, Agent security & permissions, Agent skills, AI-assisted development & code review]
 
 groups:
   - name: Languages & frameworks
     icon: braces
-    color: orange
+    tone: amber
     items: [Java, Kotlin, Spring Boot, Python, SQL, PL/SQL]
   - name: Data & messaging
     icon: database
-    color: teal
+    tone: green
     items: [PostgreSQL, DynamoDB, OpenSearch, Redis, MongoDB, Kafka (transactional outbox), Temporal, gRPC, Protobuf]
   - name: Cloud & operations
     icon: cloud
-    color: blue
+    tone: blue
     items: [AWS, Infrastructure as code, Observability, Feature flags & experimentation, Incident response]
   - name: Enterprise domain
     icon: lock
-    color: pink
+    tone: red
     items: [User & group management, SCIM, SSO, Authentication, Authorization, Enterprise policies]
 
 education: Bachelor's, Electrical, Electronics & Communications Engineering · Institute of Engineering and Management

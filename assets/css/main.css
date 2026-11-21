@@ -9,6 +9,7 @@
   --sticky: #FFE27A; --sticky-ink: #4A3B00; --hl: #FFE27A;
   --green: #17724A; --green-soft: #E3F3EB;
   --amber: #8A5A10; --amber-soft: #FBF0DC;
+  --red: #A8342D; --red-soft: #FBE7E5;
   --seg1: #8FA8F0; --seg2: #6F8FEA; --seg3: #4E74E4; --seg4: #2D5BE3;
 
   --display: "Bricolage Grotesque", "Avenir Next", "Segoe UI", system-ui, sans-serif;
@@ -200,9 +201,10 @@ a.chip--blue:hover { background: var(--blue); color: var(--on-blue); }
 .edu strong { color: var(--ink); }
 
 /* Skills */
-.skill-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 14px; }
+.skill-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
 .lev { display: flex; flex-direction: column; gap: 10px; min-width: 0; padding: 16px; border: 1px dashed var(--line); border-radius: 12px; background: var(--sunken); }
 .lev h3 { font-size: 16px; }
+.lev__head { display: flex; align-items: center; gap: 12px; }
 .lev--feature { grid-column: 1 / -1; background: var(--blue-soft); border-color: transparent; }
 .lev--feature h3 { font-size: 17px; color: var(--blue); }
 
@@ -229,6 +231,7 @@ a.chip--blue:hover { background: var(--blue); color: var(--on-blue); }
 .icon-tile--solid { background: var(--blue); color: var(--on-blue); }
 .icon-tile--amber { background: var(--amber-soft); color: var(--amber); }
 .icon-tile--green { background: var(--green-soft); color: var(--green); }
+.icon-tile--red { background: var(--red-soft); color: var(--red); }
 .goals { display: flex; flex-wrap: wrap; gap: 10px; }
 .goal {
   display: inline-flex; align-items: center; gap: 10px; padding: 6px 16px 6px 6px;
@@ -331,6 +334,7 @@ a.chip--blue:hover { background: var(--blue); color: var(--on-blue); }
   .section { padding-top: 72px; }
   .pipe { flex-direction: column; }
   .pipe .node { flex: none; }
+  .skill-grid { grid-template-columns: 1fr; }
   .arrow { transform: rotate(90deg); }
   .guards .node { margin-left: calc(var(--i) * 8px); }
   .career-bar span { font-size: 0; padding: 0; }

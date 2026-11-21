@@ -120,12 +120,12 @@ layout: default
     <div class="fig">
       <div class="skill-grid">
         <div class="lev lev--feature">
-          <h3>{{ sk.featured.name }}</h3>
+          <h3 class="lev__head"><span class="icon-tile icon-tile--solid">{% include icon.html name=sk.featured.icon size=20 %}</span>{{ sk.featured.name }}</h3>
           <div class="chips">{% for i in sk.featured.items %}<span class="chip chip--white">{{ i }}</span>{% endfor %}</div>
         </div>
         {%- for g in sk.groups %}
         <div class="lev">
-          <h3>{{ g.name }}</h3>
+          <h3 class="lev__head"><span class="icon-tile icon-tile--{{ g.tone | default: 'blue' }}">{% include icon.html name=g.icon size=20 %}</span>{{ g.name }}</h3>
           <div class="chips">{% for i in g.items %}<span class="chip">{{ i }}</span>{% endfor %}</div>
         </div>
         {%- endfor %}
