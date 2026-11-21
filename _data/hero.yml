@@ -1,0 +1,11 @@
+# The diagram under the headline on the home page (same format as a theme `figure`).
+figure:
+  type: flow
+  title: How the Miro admin assistant answers a question
+  caption: The dashed box runs once per tool call. The blue box is the agent tool layer I architected and built.
+  nodes:
+    - { who: Admin, what: Asks a question, eff: "“Who can access this team?”" }
+    - { who: Agent, what: Picks a tool, eff: repeats until answered, loop: true }
+    - { who: Tool layer · mine, what: Runs as the real user, eff: per-field authorization, highlight: true }
+    - { who: Guard, what: Nothing leaks, eff: errors and existence hidden }
+    - { who: Agent, what: Answers with real links, eff: canonical-URL tool }

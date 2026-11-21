@@ -1,7 +1,7 @@
 # Newest first. `start`/`end` (YYYY-MM-DD, or end: present) size the timeline bar.
 - company: Miro
   short: Miro 2022–now
-  color: violet
+  color: seg4
   role: Senior Software Engineer, Enterprise Platform
   dates: Jan 2022 — Present
   start: 2022-01-01
@@ -13,7 +13,7 @@
 
 - company: TBA Group
   short: TBA Group 2021
-  color: orange
+  color: sticky
   role: Senior Software Engineer
   dates: Jun 2021 — Dec 2021
   start: 2021-06-01
@@ -23,7 +23,7 @@
 
 - company: Turvo
   short: Turvo 2018–21
-  color: teal
+  color: seg3
   role: Senior Software Engineer
   dates: May 2018 — May 2021
   start: 2018-05-01
@@ -37,7 +37,7 @@
 
 - company: Oracle
   short: Oracle 2015–18
-  color: pink
+  color: seg2
   role: Application Developer, HCM Payroll
   dates: Sep 2015 — May 2018
   start: 2015-09-01
@@ -50,7 +50,7 @@
 
 - company: Infosys
   short: Infosys 2014
-  color: slate
+  color: seg1
   role: Systems Engineer, Morgan Stanley Wealth Management
   dates: Jul 2014 — Aug 2015
   start: 2014-07-01

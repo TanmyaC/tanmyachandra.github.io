@@ -3,18 +3,23 @@ layout: default
 ---
 <article class="section">
   <div class="wrap wrap--narrow">
-    <a class="back mono" href="{{ '/blog/' | relative_url }}">← all posts</a>
+    <a class="back" href="{{ '/blog/' | relative_url }}">← All writing</a>
     <header class="post__head">
-      <p class="eyebrow">{{ page.date | date: "%-d %b %Y" }}{% if page.tags.size > 0 %} · {{ page.tags | join: " · " }}{% endif %}</p>
+      {%- if page.series %}<span class="pill">{{ page.series }}</span>{% endif %}
       <h1 class="post__title">{{ page.title }}</h1>
       {%- if page.description %}<p class="post__lede">{{ page.description }}</p>{% endif %}
+      <p class="post__byline">{{ site.title }} · {{ page.date | date: "%-d %b %Y" }}{% if page.read_time %} · {{ page.read_time }}{% endif %}{% if page.tags.size > 0 %} · {{ page.tags | join: " · " }}{% endif %}</p>
     </header>
+    {%- if page.external_url %}
+    <p><a class="btn btn--primary" href="{{ page.external_url }}">Read the post {% include icon.html name="external" size=14 %}</a></p>
+    {%- else %}
     <div class="prose">
       {{ content }}
     </div>
-    <nav class="post__pager">
-      {%- if page.previous %}<a href="{{ page.previous.url | relative_url }}"><span class="mono">← older</span>{{ page.previous.title }}</a>{% else %}<span></span>{% endif %}
-      {%- if page.next %}<a class="right" href="{{ page.next.url | relative_url }}"><span class="mono">newer →</span>{{ page.next.title }}</a>{% endif %}
+    {%- endif %}
+    <nav class="post__pager" aria-label="More posts">
+      {%- if page.previous %}<a href="{{ page.previous.url | relative_url }}"><span>← Older</span>{{ page.previous.title }}</a>{% else %}<span></span>{% endif %}
+      {%- if page.next %}<a class="right" href="{{ page.next.url | relative_url }}"><span>Newer →</span>{{ page.next.title }}</a>{% endif %}
     </nav>
   </div>
 </article>

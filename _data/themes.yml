@@ -1,79 +1,92 @@
-# Each theme is one tab in "01. themes".
-# `points` support **bold** markdown. `guards` (optional) render as the stepped
-# list on the right; otherwise `panel_title` + `panel_items` are shown.
+# Each theme is one tab in "01 · Themes".
+# `points` support **bold** markdown. `figure` draws the diagram on the right:
+#   type: guards  -> stepped list (items: [text, ...]; the last one is highlighted)
+#   type: flow    -> boxes and arrows (nodes: [{who, what, eff, highlight: true}])
+#   type: bars    -> before/after bars (rows: [{label, pct, value, tone: faint|blue|green}])
+#   type: sticky  -> one big number on a sticky note (value, text)
 - id: agentic-ai
   name: Agentic AI
-  color: violet
-  kicker: Agentic AI for Enterprise Administration
-  headline: An AI admin assistant that's safe enough for the enterprise.
+  title: Agentic AI for Enterprise Administration
   points:
-    - "**Architected and built the agent tool layer** for Miro's agentic administration assistant, which answers admins' questions about their organization, teams, users and settings."
-    - "**Engineered it to be enterprise-safe:** the agent acts with the real user's permissions, per-field authorization lets partially entitled admins still get answers, errors and data existence never leak to the model, and a canonical-URL tool stops the LLM inventing settings links."
+    - "I **architected and built the agent tool layer** for Miro's agentic administration assistant, an AI chat assistant that answers enterprise admins' questions about their organization, teams, users and settings."
+    - "I engineered it to be **enterprise-safe**: the agent acts with the real user's permissions, per-field authorization lets partially entitled admins still get answers, errors and data existence never leak to the model, and a canonical-URL tool stops the LLM inventing settings links."
   tags: [LLM tool calling, Agent security, Kotlin, gRPC]
-  panel_title: every question passes four guards
-  guards:
-    - Acts as the real user
-    - Per-field authorization
-    - No leaks to the model
-    - Canonical URLs only
+  ai: true
+  figure:
+    type: guards
+    title: Four guards on every answer
+    items: [Acts as the real user, Per-field authorization, No leaks to the model, Canonical URLs only]
 
-# TODO: fill in the five themes below (placeholders shown in [brackets]).
 - id: ai-dev-productivity
   name: AI Developer Productivity
-  color: orange
-  kicker: "[Project or initiative name]"
-  headline: "[One-line outcome for this theme.]"
+  title: AI Developer Productivity
   points:
-    - "**[What you built]** [and the context it lived in.]"
-    - "**[What it changed]** [for engineers or the business.]"
-  tags: ["[Tech]", "[Tech]"]
-  panel_title: "[what the numbers say]"
-  panel_items: ["[Highlight 1]", "[Highlight 2]", "[Highlight 3]"]
+    - "**Cut time to first PR review by 25%** by building AI code-review notification automation, giving multiple teams one unified platform and less review load."
+    - "**Reduced on-call load** by automating alert and incident triage with deterministic problem evaluation, so engineers resolve issues faster."
+  tags: [AI-assisted code review, Incident response, Observability]
+  ai: true
+  figure:
+    type: bars
+    title: Wait for a first PR review
+    rows:
+      - { label: Before, pct: 100, value: "100", tone: faint }
+      - { label: After, pct: 75, value: "75", tone: blue }
+    caption: Indexed to 100 before the change, a 25% cut.
 
 - id: user-management
   name: User Management at Scale
-  color: teal
-  kicker: "[Project or initiative name]"
-  headline: "[One-line outcome for this theme.]"
+  title: User Management at Scale
   points:
-    - "**[What you built]** [and the context it lived in.]"
-    - "**[What it changed]** [for admins or the business.]"
-  tags: ["[Tech]", "[Tech]"]
-  panel_title: "[what the numbers say]"
-  panel_items: ["[Highlight 1]", "[Highlight 2]", "[Highlight 3]"]
+    - "**Delivered User Groups on schedule for GA** by taking on and refining an unexpected requirement. It's now available to all Enterprise and Business plan customers."
+    - "**Owned the SCIM APIs**, hardening them for security, reliability and standard compliance, and built interactive SCIM docs customers can try live with an API key."
+    - "**Defined and delivered Managed Users** from concept to launch: authored the full rule set and helped redirect the original product approach."
+  tags: [SCIM, Provisioning, PostgreSQL, Kafka]
+  figure:
+    type: flow
+    title: From a customer's identity provider into Miro
+    nodes:
+      - { who: Customer, what: Identity provider, eff: source of truth for people }
+      - { who: Owned, what: SCIM APIs, eff: "secure, reliable, standard", highlight: true }
+      - { who: Shipped, what: User Groups, eff: GA on schedule }
+      - { who: Defined, what: Managed Users, eff: concept to launch }
 
 - id: enterprise-security
   name: Enterprise Security
-  color: pink
-  kicker: "[Project or initiative name]"
-  headline: "[One-line outcome for this theme.]"
+  title: "Enterprise Security: Authentication, Authorization & Access"
   points:
-    - "**[What you built]** [and the context it lived in.]"
-    - "**[What it changed]** [for customers or the business.]"
-  tags: ["[Tech]", "[Tech]"]
-  panel_title: "[what the numbers say]"
-  panel_items: ["[Highlight 1]", "[Highlight 2]", "[Highlight 3]"]
+    - "**Subject-matter expert for enterprise security**, accountable for who can access what across the platform and for closing security gaps. Sole owner of domain control and SSO."
+    - "**Saved thousands of customer-support hours** by turning manual, email-based domain verification into a self-serve automated product. Led as DRI from design to launch."
+  tags: [SSO, Authentication, Authorization, Domain control]
+  figure:
+    type: bars
+    title: Same-day domain verification
+    rows:
+      - { label: By email, pct: 45, value: "~45%", tone: faint }
+      - { label: Self-serve, pct: 70, value: "~70%", tone: green }
 
 - id: product-direction
   name: Product Direction
-  color: yellow
-  kicker: "[Project or initiative name]"
-  headline: "[One-line outcome for this theme.]"
+  title: Product Direction
   points:
-    - "**[What you shaped]** [and the context it lived in.]"
-    - "**[What it changed]** [for the product.]"
-  tags: ["[Tech]", "[Tech]"]
-  panel_title: "[what the numbers say]"
-  panel_items: ["[Highlight 1]", "[Highlight 2]", "[Highlight 3]"]
+    - "**Go-to engineer for product managers:** I surface edge cases and scope decisions early through a decision log that a PM plans to reuse across projects."
+    - "**Led the unification of domain management as DRI**, building the case with data and simplifying the model for other teams."
+  tags: [Decision logs, Scoping, Data-driven proposals]
+  figure:
+    type: sticky
+    value: "~2.4K"
+    text: "organizations had SSO but no domain control: the case for unifying domain management."
 
 - id: cost-risk-reliability
   name: Cost, Risk & Reliability
-  color: blue
-  kicker: "[Project or initiative name]"
-  headline: "[One-line outcome for this theme.]"
+  title: Cost, Risk & Reliability
   points:
-    - "**[What you fixed]** [and the context it lived in.]"
-    - "**[What it changed]** [in cost, risk or reliability.]"
-  tags: ["[Tech]", "[Tech]"]
-  panel_title: "[what the numbers say]"
-  panel_items: ["[Highlight 1]", "[Highlight 2]", "[Highlight 3]"]
+    - "**Lowered infrastructure cost and strengthened GDPR compliance:** cut search-index storage ~30% and removed 500K+ orphaned records with continuous automated cleanup."
+    - "**Restored a critical high-traffic feature during an incident** by cutting database calls per request from 185 to 23."
+  tags: [OpenSearch, Temporal, GDPR]
+  figure:
+    type: bars
+    title: DB calls per request, before and after
+    rows:
+      - { label: Before, pct: 100, value: "185", tone: faint }
+      - { label: After, pct: 12.4, value: "23", tone: blue }
+    caption: "Search-index storage also fell from 110 GB to 75 GB."

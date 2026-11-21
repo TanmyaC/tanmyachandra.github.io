@@ -1,0 +1,35 @@
+{%- comment -%}Draws a whiteboard figure from a data hash: include figure.html f=some.figure{%- endcomment -%}
+{%- assign f = include.f -%}
+{%- if f.type == "sticky" -%}
+<div class="sticky sticky--fig"><span class="mono sticky__big">{{ f.value }}</span>{{ f.text }}</div>
+{%- else -%}
+<figure class="fig">
+  {%- if f.title %}<div class="fig__t">{{ f.title }}</div>{% endif %}
+  {%- case f.type -%}
+  {%- when "guards" %}
+  <ol class="guards">
+    {%- for g in f.items %}
+    <li class="node{% if forloop.last %} node--hl{% endif %}" style="--i: {{ forloop.index0 }}"><span class="node__who">0{{ forloop.index }}</span><span class="node__what">{{ g }}</span></li>
+    {%- endfor %}
+  </ol>
+  {%- when "flow" %}
+  <div class="pipe">
+    {%- for n in f.nodes %}
+    {%- unless forloop.first %}<span class="arrow" aria-hidden="true">→</span>{% endunless %}
+    <div class="node{% if n.highlight %} node--hl{% endif %}{% if n.loop %} node--loop{% endif %}">
+      {%- if n.who %}<span class="node__who">{{ n.who }}</span>{% endif %}
+      <span class="node__what">{{ n.what }}</span>
+      {%- if n.eff %}<span class="node__eff">{{ n.eff }}</span>{% endif %}
+    </div>
+    {%- endfor %}
+  </div>
+  {%- when "bars" %}
+  <div class="bars">
+    {%- for r in f.rows %}
+    <div class="bars__row"><span>{{ r.label }}</span><span class="track"><i class="tone-{{ r.tone | default: 'blue' }}" style="width: {{ r.pct }}%"></i></span><span class="mono tone-text-{{ r.tone | default: 'blue' }}">{{ r.value }}</span></div>
+    {%- endfor %}
+  </div>
+  {%- endcase %}
+  {%- if f.caption %}<figcaption>{{ f.caption }}</figcaption>{% endif %}
+</figure>
+{%- endif -%}

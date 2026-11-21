@@ -9,15 +9,16 @@ Almost everything is in YAML under `_data/`, so you rarely need to touch HTML:
 | What | File |
 | --- | --- |
 | Name, email, LinkedIn, résumé path | `_config.yml` |
+| Diagram under the headline | `_data/hero.yml` |
 | Headline stats | `_data/stats.yml` |
-| "What I work on" theme tabs | `_data/themes.yml` |
+| Theme tabs and their diagrams (`guards`, `flow`, `bars`, `sticky`) | `_data/themes.yml` |
 | Experience timeline | `_data/experience.yml` |
 | Skills + education | `_data/skills.yml` |
 | Side projects | `_data/projects.yml` |
 | Women in Engineering | `_data/wie.yml` |
 | References (talks, articles, recommendations) | `_data/references.yml` |
 
-Put your résumé at `assets/Tanmya-Chandra-Resume.pdf`, or change `resume:` in `_config.yml`.
+To offer a résumé download, add the PDF under `assets/` and set `resume:` in `_config.yml` (empty hides the links).
 
 ## Write a blog post
 
@@ -30,13 +31,17 @@ Put your résumé at `assets/Tanmya-Chandra-Resume.pdf`, or change `resume:` in 
    ---
    Markdown goes here.
    ```
-2. Commit and push. Once the first post exists, a **Blog** nav link, a "writing" section on the home page and an RSS feed (`/feed.xml`) appear on their own.
+2. Commit and push. The **Writing** nav link, the home-page section and the RSS feed (`/feed.xml`) list every post.
+
+Optional front matter: `series: "Backend → AI Engineer · Part 1"` adds a pill, `read_time: 6 min read` shows on cards, and `external_url: https://...` makes the cards link to a post published somewhere else.
+
+Markdown blockquotes (`> like this`) render as sticky notes.
 
 Work in progress goes in `_drafts/` (no date in the filename). Drafts are never published.
 
 ## References
 
-Add entries to `_data/references.yml`. Examples are in the file's comments. The `/references/` page and its nav link appear once there's at least one entry.
+Add entries to `_data/references.yml`. Examples are in the file's comments. The `/references/` page and its nav link appear once there's at least one entry, and up to three recommendations (entries with a `quote`) also show on the home page.
 
 ## Run locally
 

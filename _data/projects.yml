@@ -1,22 +1,25 @@
-# TODO: replace the placeholders. icon: phone | chart | globe. Leave code/demo empty to hide a link.
-- name: "[Side project]"
-  description: "[What it does and why you built it.]"
-  tech: ["[Tech]", "[Tech]"]
-  icon: phone
-  color: violet
+# Personal projects. The first one is shown large. Leave code/demo/notes empty to hide a link.
+# Optional `flow` draws boxes and arrows: [{who, what, eff, highlight: true}]
+#
+# Template:
+# - name: My project
+#   status: shipped            # optional small tag
+#   description: What it does and why you built it.
+#   tags: [Kotlin, Postgres]   # `ai_tags` render in blue
+#   code: https://github.com/...
+#   demo: https://...
+#   notes: https://...         # a write-up
+- name: Design Dojo
+  status: in progress
+  description: >-
+    A mock system design interview app. You practise with an AI interviewer and get an honest,
+    evidence-backed grade. I'm building it from scratch as I learn AI engineering, and writing about it as I go.
+  flow:
+    - { who: Alex, what: Interviews you, eff: "scopes, pushes back, grades" }
+    - { who: Sam, what: Model solution, eff: never sees your design, highlight: true }
+    - { who: Sam, what: Compares with yours, eff: then answers follow-ups }
+  ai_tags: [LLM pipelines, Evals]
+  tags: [Diagram understanding, Voice in and out]
   code: ""
   demo: ""
-- name: "[Side project]"
-  description: "[What it does and why you built it.]"
-  tech: ["[Tech]", "[Tech]"]
-  icon: chart
-  color: orange
-  code: ""
-  demo: ""
-- name: "[Side project]"
-  description: "[What it does and why you built it.]"
-  tech: ["[Tech]", "[Tech]"]
-  icon: globe
-  color: teal
-  code: ""
-  demo: ""
+  notes: https://claude.ai/artifact/3hKEAzibp3bXky6btguDUP

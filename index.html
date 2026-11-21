@@ -5,239 +5,210 @@ layout: default
 
 <!-- Hero -->
 <section class="hero">
-  <div class="wrap hero__grid">
-    <div>
-      <p class="hero__hello mono">&gt; hello, world — Amsterdam, NL<span class="caret">_</span></p>
-      <h1 class="hero__title">
-        I’m Tanmya.<br>
-        <span class="accent">I build enterprise platforms</span><br>
-        &amp; the AI agents on them.
-      </h1>
-      <p class="hero__lede">Senior Software Engineer on Miro's Enterprise Platform. For 10+ years I've turned manual enterprise processes into secure, self-serve products that scale to millions of users. I also founded <strong>Women in Engineering at Miro</strong>.</p>
-      <div class="hero__cta">
-        <a class="btn btn--primary" href="#themes">Explore my work {% include icon.html name="arrow" size=14 %}</a>
-        <a class="btn btn--ghost" href="{{ site.resume | relative_url }}" download>Résumé {% include icon.html name="download" size=14 %}</a>
-        <a class="btn btn--ghost btn--icon" href="{{ site.linkedin }}" aria-label="LinkedIn" rel="me noopener" target="_blank">{% include icon.html name="linkedin" size=16 %}</a>
+  <div class="wrap">
+    <div class="hero__row">
+      <div class="hero__text">
+        <span class="pill">Senior Software Engineer · Miro · Amsterdam</span>
+        <h1 class="hero__title">I build enterprise platforms and <span class="hl">the AI agents that run on them</span>.</h1>
+        <p class="hero__lede">10+ years turning manual enterprise processes into secure, self-serve products used by millions. I also founded Women in Engineering at Miro, and I write about moving from backend to AI engineering.</p>
+        <div class="btn-row">
+          <a class="btn btn--primary" href="#themes">See what I build</a>
+          {%- if site.posts.size > 0 %}<a class="btn btn--outline" href="#writing">Read my writing</a>{% endif %}
+          <a class="btn btn--outline" href="{{ site.linkedin }}" rel="me noopener" target="_blank">LinkedIn {% include icon.html name="external" size=14 %}</a>
+        </div>
       </div>
+      <p class="sticky sticky--r hero__note">Enterprise-safe AI: the agent only ever sees what the admin asking is allowed to see.</p>
     </div>
 
-    <div class="hero__art" aria-hidden="true">
-      <div class="orbit"><span class="orbit__dot orbit__dot--a"></span><span class="orbit__dot orbit__dot--b"></span></div>
-      <div class="chat">
-        <div class="chat__head">{% include icon.html name="check" size=11 class="chat__badge" %} Admin assistant</div>
-        <div class="chat__q">Who can access this team?</div>
-        <div class="chat__tool mono"><span class="c-teal">→</span> tool: get_team_members()</div>
-        <div class="chat__tool mono"><span class="c-teal">✓</span> as you · per-field authz</div>
-        <div class="chat__answer"><span></span><span></span></div>
-      </div>
-      <div class="pill pill--leaks"><span class="pill__lock">{% include icon.html name="lock" size=12 %}</span> no data leaks</div>
-      <div class="pill pill--calls mono"><span class="c-orange">185 → 23</span> <span class="muted">db calls</span></div>
-    </div>
+    {% include figure.html f=site.data.hero.figure %}
+
+    <ul class="stats">
+      {%- for s in site.data.stats %}
+      <li class="card stat"><span class="mono stat__value c-{{ s.color }}">{{ s.value }}</span><span class="stat__label">{{ s.label }}</span></li>
+      {%- endfor %}
+    </ul>
   </div>
 </section>
 
-<!-- Stats -->
-<section class="stats">
-  <div class="wrap stats__grid">
-    {%- for s in site.data.stats %}
-    <div class="stat">
-      <div class="stat__value c-{{ s.color }}">{{ s.value }}</div>
-      <div class="stat__label">{{ s.label }}</div>
-    </div>
-    {%- endfor %}
-  </div>
-</section>
-
-<!-- 01 Themes -->
+<!-- Themes -->
 {%- assign n = n | plus: 1 %}
 <section class="section" id="themes">
   <div class="wrap">
-    <div class="section__head section__head--split">
-      <div>
-        <p class="eyebrow">0{{ n }}. themes</p>
-        <h2>What I work on, by theme</h2>
-      </div>
+    <div class="section__head">
+      <span class="pill">0{{ n }} · Themes</span>
+      <h2>What I work on, by theme</h2>
       <p class="section__aside">Six threads run through my work on Miro's Enterprise Platform. Pick one to see what I built and what it changed.</p>
     </div>
 
     <div class="tabs" role="tablist" aria-label="Themes">
       {%- for t in site.data.themes %}
-      <button class="chip chip--tab" role="tab" id="tab-{{ t.id }}" aria-controls="panel-{{ t.id }}" aria-selected="{% if forloop.first %}true{% else %}false{% endif %}" tabindex="{% if forloop.first %}0{% else %}-1{% endif %}" data-theme="{{ t.id }}"><span class="dot bg-{{ t.color }}"></span>{{ t.name }}</button>
+      <button class="tab" role="tab" id="tab-{{ t.id }}" aria-controls="panel-{{ t.id }}" aria-selected="{% if forloop.first %}true{% else %}false{% endif %}" tabindex="{% if forloop.first %}0{% else %}-1{% endif %}" data-theme="{{ t.id }}">{{ t.name }}</button>
       {%- endfor %}
     </div>
 
     {%- for t in site.data.themes %}
-    <div class="theme" role="tabpanel" id="panel-{{ t.id }}" aria-labelledby="tab-{{ t.id }}"{% unless forloop.first %} hidden{% endunless %}>
+    <div class="theme" role="tabpanel" id="panel-{{ t.id }}" aria-labelledby="tab-{{ t.id }}" tabindex="0"{% unless forloop.first %} hidden{% endunless %}>
       <div class="theme__main">
-        <p class="mono kicker c-{{ t.color }}">{{ t.kicker }}</p>
-        <h3>{{ t.headline }}</h3>
-        <ul class="bullets">
-          {%- for p in t.points %}<li>{{ p | markdownify | remove: '<p>' | remove: '</p>' }}</li>{% endfor %}
-        </ul>
-        <div class="tags">{% for tag in t.tags %}<span class="tag">{{ tag }}</span>{% endfor %}</div>
+        <h3>{{ t.title }}</h3>
+        {%- for p in t.points %}<p>{{ p | markdownify | remove: '<p>' | remove: '</p>' }}</p>{% endfor %}
+        <div class="chips">{% for tag in t.tags %}<span class="chip{% if t.ai and forloop.index <= 2 %} chip--blue{% endif %}">{{ tag }}</span>{% endfor %}</div>
       </div>
-      <div class="theme__side">
-        <p class="mono muted small">// {{ t.panel_title }}</p>
-        {%- if t.guards %}
-        <ol class="guards">
-          {%- for g in t.guards %}
-          <li style="--i: {{ forloop.index0 }}"{% if forloop.last %} class="is-last"{% endif %}><span class="mono">0{{ forloop.index }}</span> {{ g }}</li>
-          {%- endfor %}
-        </ol>
-        {%- else %}
-        <ul class="panel-list">
-          {%- for g in t.panel_items %}<li><span class="dot bg-{{ t.color }}"></span>{{ g }}</li>{% endfor %}
-        </ul>
-        {%- endif %}
-      </div>
+      <div class="theme__side">{% include figure.html f=t.figure %}</div>
     </div>
     {%- endfor %}
   </div>
 </section>
 
-<!-- 02 Experience -->
+<!-- Experience -->
 {%- assign n = n | plus: 1 %}
 {%- assign now_s = site.time | date: "%s" | plus: 0 %}
 {%- assign jobs_oldest_first = site.data.experience | reverse %}
 <section class="section" id="experience">
   <div class="wrap">
     <div class="section__head">
-      <p class="eyebrow">0{{ n }}. experience</p>
+      <span class="pill">0{{ n }} · Experience</span>
       <h2>Ten years, five companies</h2>
     </div>
 
-    <div class="career-bar" aria-hidden="true">
-      {%- for j in jobs_oldest_first %}
-        {%- assign s = j.start | date: "%s" | plus: 0 %}
-        {%- if j.end == "present" %}{% assign e = now_s %}{% else %}{% assign e = j.end | date: "%s" | plus: 0 %}{% endif %}
-        {%- assign days = e | minus: s | divided_by: 86400 %}
-      <span class="bg-{{ j.color }}" style="flex-grow: {{ days }}" title="{{ j.short }}"></span>
-      {%- endfor %}
-    </div>
-    <ul class="legend">
-      {%- for j in jobs_oldest_first %}<li><span class="sq bg-{{ j.color }}"></span>{{ j.short }}</li>{% endfor %}
-    </ul>
+    <figure class="fig">
+      <div class="fig__t">Career at a glance, sized by time</div>
+      <div class="career-bar" role="img" aria-label="{% for j in jobs_oldest_first %}{{ j.short }}{% unless forloop.last %}, {% endunless %}{% endfor %}">
+        {%- for j in jobs_oldest_first %}
+          {%- assign s = j.start | date: "%s" | plus: 0 %}
+          {%- if j.end == "present" %}{% assign e = now_s %}{% else %}{% assign e = j.end | date: "%s" | plus: 0 %}{% endif %}
+          {%- assign days = e | minus: s | divided_by: 86400 %}
+        <span class="bg-{{ j.color }}" style="flex-grow: {{ days }}">{% if days > 700 %}{{ j.company }}{% endif %}</span>
+        {%- endfor %}
+      </div>
+      <div class="chips">{% for j in jobs_oldest_first %}<span class="chip{% if forloop.last %} chip--blue{% endif %}">{{ j.short }}</span>{% endfor %}</div>
+    </figure>
 
-    <ol class="timeline">
+    <ol class="road">
       {%- for j in site.data.experience %}
-      <li class="job{% if forloop.first %} job--current{% endif %}" style="--c: var(--{{ j.color }})">
-        <div class="job__card">
-          <div class="job__meta"><span class="date mono">{{ j.dates }}</span><span class="muted small">{{ j.location }}</span></div>
-          <h3 class="job__title">{{ j.role }} <span class="accent">@ {{ j.company }}</span></h3>
-          {%- if j.summary %}<p class="job__summary">{{ j.summary }}</p>{% endif %}
-          {%- if j.points %}
-          <ul class="bullets bullets--ring">
-            {%- for p in j.points %}<li>{{ p | markdownify | remove: '<p>' | remove: '</p>' }}</li>{% endfor %}
-          </ul>
-          {%- endif %}
-          {%- if j.themes %}
-          <div class="job__themes"><span class="muted small">Themes:</span>
-            {%- for t in site.data.themes %}<a class="chip chip--sm" href="#themes" data-theme-link="{{ t.id }}"><span class="dot bg-{{ t.color }}"></span>{{ t.name }}</a>{% endfor %}
-          </div>
-          {%- endif %}
-          {%- if j.stack %}<p class="job__stack mono">{{ j.stack }}</p>{% endif %}
+      <li class="stop{% if forloop.first %} stop--now{% endif %}">
+        <span class="mono stop__date">{{ j.dates }} · {{ j.location }}</span>
+        <h3>{{ j.role }} · {{ j.company }}</h3>
+        {%- if j.summary %}<p class="muted">{{ j.summary }}</p>{% endif %}
+        {%- if j.points %}
+        <ul class="bullets">
+          {%- for p in j.points %}<li>{{ p | markdownify | remove: '<p>' | remove: '</p>' }}</li>{% endfor %}
+        </ul>
+        {%- endif %}
+        {%- if j.themes %}
+        <div class="chips"><span class="muted small">Themes:</span>
+          {%- for t in site.data.themes %}<a class="chip chip--blue" href="#themes" data-theme-link="{{ t.id }}">{{ t.name }}</a>{% endfor %}
         </div>
+        {%- endif %}
+        {%- if j.stack %}<p class="mono stop__stack">{{ j.stack }}</p>{% endif %}
       </li>
       {%- endfor %}
     </ol>
 
-    <p class="edu">{% include icon.html name="cap" size=16 class="c-teal" %} {{ site.data.skills.education }}</p>
+    <p class="edu"><strong>Education:</strong> {{ site.data.skills.education }}</p>
   </div>
 </section>
 
-<!-- 03 Skills -->
+<!-- Skills -->
 {%- assign n = n | plus: 1 %}
 {%- assign sk = site.data.skills %}
 <section class="section" id="skills">
   <div class="wrap">
     <div class="section__head">
-      <p class="eyebrow">0{{ n }}. skills</p>
+      <span class="pill">0{{ n }} · Skills</span>
       <h2>My toolbox</h2>
     </div>
-    <div class="skill-feature">
-      <div class="skill-feature__name"><span class="skill-feature__badge mono">AI</span>{{ sk.featured.name }}</div>
-      <div class="tags">{% for i in sk.featured.items %}<span class="tag tag--on-accent">{{ i }}</span>{% endfor %}</div>
-    </div>
-    <div class="skill-grid">
-      {%- for g in sk.groups %}
-      <div class="card skill">
-        <h3 class="skill__name"><span class="skill__icon c-{{ g.color }}">{% include icon.html name=g.icon size=14 %}</span>{{ g.name }}</h3>
-        <div class="tags">{% for i in g.items %}<span class="tag tag--square">{{ i }}</span>{% endfor %}</div>
+    <div class="fig">
+      <div class="skill-grid">
+        <div class="lev lev--feature">
+          <h3>{{ sk.featured.name }}</h3>
+          <div class="chips">{% for i in sk.featured.items %}<span class="chip chip--white">{{ i }}</span>{% endfor %}</div>
+        </div>
+        {%- for g in sk.groups %}
+        <div class="lev">
+          <h3>{{ g.name }}</h3>
+          <div class="chips">{% for i in g.items %}<span class="chip">{{ i }}</span>{% endfor %}</div>
+        </div>
+        {%- endfor %}
       </div>
-      {%- endfor %}
     </div>
   </div>
 </section>
 
-<!-- 04 Projects -->
+<!-- Projects -->
+{%- if site.data.projects.size > 0 %}
 {%- assign n = n | plus: 1 %}
 <section class="section" id="projects">
   <div class="wrap">
     <div class="section__head">
-      <p class="eyebrow">0{{ n }}. personal_projects</p>
-      <h2>Built for fun</h2>
+      <span class="pill">0{{ n }} · Personal projects</span>
+      <h2>Built on my own time</h2>
     </div>
     <div class="project-grid">
       {%- for p in site.data.projects %}
-      <article class="card project">
-        <div class="project__top">
-          <span class="project__icon bg-{{ p.color }}">{% include icon.html name=p.icon size=20 %}</span>
-          <span class="project__links">
-            {%- if p.code != "" %}<a href="{{ p.code }}" aria-label="Source code" target="_blank" rel="noopener">{% include icon.html name="code" %}</a>{% else %}<span class="is-off">{% include icon.html name="code" %}</span>{% endif %}
-            {%- if p.demo != "" %}<a href="{{ p.demo }}" aria-label="Live demo" target="_blank" rel="noopener">{% include icon.html name="external" %}</a>{% else %}<span class="is-off">{% include icon.html name="external" %}</span>{% endif %}
-          </span>
-        </div>
-        <h3>{{ p.name }}</h3>
+      <article class="card project{% if forloop.first %} project--feature{% endif %}">
+        <div class="project__top"><h3>{{ p.name }}</h3>{% if p.status %}<span class="tag">{{ p.status }}</span>{% endif %}</div>
         <p>{{ p.description }}</p>
-        <p class="mono muted small">{{ p.tech | join: " · " }}</p>
+        {%- if p.flow %}
+        <div class="pipe">
+          {%- for nd in p.flow %}
+          {%- unless forloop.first %}<span class="arrow" aria-hidden="true">→</span>{% endunless %}
+          <div class="node{% if nd.highlight %} node--hl{% endif %}"><span class="node__who">{{ nd.who }}</span><span class="node__what">{{ nd.what }}</span>{% if nd.eff %}<span class="node__eff">{{ nd.eff }}</span>{% endif %}</div>
+          {%- endfor %}
+        </div>
+        {%- endif %}
+        <div class="chips">{% for i in p.ai_tags %}<span class="chip chip--blue">{{ i }}</span>{% endfor %}{% for i in p.tags %}<span class="chip">{{ i }}</span>{% endfor %}</div>
+        {%- if p.notes != "" or p.code != "" or p.demo != "" %}
+        <p class="project__links">
+          {%- if p.notes and p.notes != "" %}<a href="{{ p.notes }}" target="_blank" rel="noopener">Read the build notes →</a>{% endif %}
+          {%- if p.code and p.code != "" %}<a href="{{ p.code }}" target="_blank" rel="noopener">Source {% include icon.html name="code" size=14 %}</a>{% endif %}
+          {%- if p.demo and p.demo != "" %}<a href="{{ p.demo }}" target="_blank" rel="noopener">Live demo {% include icon.html name="external" size=14 %}</a>{% endif %}
+        </p>
+        {%- endif %}
       </article>
       {%- endfor %}
     </div>
   </div>
 </section>
+{%- endif %}
 
-<!-- 05 Women in Engineering -->
+<!-- Women in Engineering -->
 {%- assign n = n | plus: 1 %}
 {%- assign wie = site.data.wie %}
-<section class="section wie" id="women-in-engineering">
+<section class="section" id="women-in-engineering">
   <div class="wrap">
+    <div class="section__head">
+      <span class="pill">0{{ n }} · Women in Engineering</span>
+    </div>
     <div class="wie__intro">
       <div>
-        <p class="eyebrow">0{{ n }}. women_in_engineering</p>
         <h2>Lifting as we climb.</h2>
-        <p class="wie__lede">I'm the <strong>Founder &amp; Convenor of Women in Engineering at Miro</strong>, a community I started for the growth, confidence and career success of women engineers.</p>
-        <div class="tags">
-          <span class="badge bg-wie-purple">Growth</span>
-          <span class="badge bg-wie-orange">Confidence</span>
-          <span class="badge bg-wie-teal">Career success</span>
-        </div>
+        <p class="wie__lede">I'm the <strong>Founder &amp; Convenor of Women in Engineering at Miro</strong>, a community I started for the <span class="hl">growth, confidence and career success</span> of women engineers.</p>
       </div>
-      {% include wie-art.html %}
+      {%- if wie.quote.text and wie.quote.text != "" %}
+      <figure class="sticky wie__quote">
+        <blockquote>{{ wie.quote.text }}</blockquote>
+        {%- if wie.quote.author != "" %}<figcaption>— {{ wie.quote.author }}</figcaption>{% endif %}
+      </figure>
+      {%- endif %}
     </div>
 
     <div class="wie__pillars">
       {%- for p in wie.pillars %}
-      <div class="wie-card{% if forloop.first %} wie-card--feature{% endif %} wie-c{{ forloop.index }}">
-        {% include icon.html name=p.icon size=22 %}
+      <div class="card wie-card{% if forloop.first %} wie-card--feature{% endif %}">
+        <span class="mono wie-card__label">{{ p.label }}</span>
         <h3>{{ p.title }}</h3>
         <p>{{ p.text }}</p>
       </div>
       {%- endfor %}
     </div>
 
-    <p class="mono wie__sub">// workshops I've run</p>
-    <ol class="workshops">
-      {%- for w in wie.workshops %}
-      <li class="wie-card wie-c{{ forloop.index }}"><span class="num">0{{ forloop.index }}</span>{{ w }}</li>
-      {%- endfor %}
-    </ol>
-
-    <figure class="quote">
-      <span class="quote__mark" aria-hidden="true">“</span>
-      <div>
-        <blockquote>{{ wie.quote.text }}</blockquote>
-        <figcaption>— {{ wie.quote.author }}</figcaption>
-      </div>
+    <figure class="fig">
+      <div class="fig__t">Workshops I've run</div>
+      <ol class="pipe">
+        {%- for w in wie.workshops %}
+        <li class="node{% if forloop.index == 2 %} node--hl{% endif %}"><span class="node__who">0{{ forloop.index }}</span><span class="node__what">{{ w }}</span></li>
+        {%- endfor %}
+      </ol>
     </figure>
   </div>
 </section>
@@ -249,32 +220,51 @@ layout: default
   <div class="wrap">
     <div class="section__head section__head--split">
       <div>
-        <p class="eyebrow">0{{ n }}. writing</p>
-        <h2>Notes from the platform</h2>
+        <span class="pill">0{{ n }} · Writing</span>
+        <h2>Notes from the build</h2>
       </div>
-      <a class="btn btn--ghost" href="{{ '/blog/' | relative_url }}">All posts {% include icon.html name="arrow" size=14 %}</a>
+      <a class="btn btn--outline" href="{{ '/blog/' | relative_url }}">All writing {% include icon.html name="arrow" size=14 %}</a>
     </div>
     {% include post-list.html posts=site.posts limit=3 %}
   </div>
 </section>
 {%- endif %}
 
-<!-- Contact -->
+<!-- References (shows once _data/references.yml has entries) -->
+{%- assign quotes = site.data.references | where_exp: "r", "r.quote" %}
+{%- if quotes.size > 0 %}
 {%- assign n = n | plus: 1 %}
+<section class="section" id="references">
+  <div class="wrap">
+    <div class="section__head section__head--split">
+      <div>
+        <span class="pill">0{{ n }} · References</span>
+        <h2>What colleagues say</h2>
+      </div>
+      <a class="btn btn--outline" href="{{ '/references/' | relative_url }}">All references {% include icon.html name="arrow" size=14 %}</a>
+    </div>
+    <ul class="ref-list">
+      {%- for r in quotes limit: 3 %}
+      <li class="card ref ref--quote">
+        <blockquote>“{{ r.quote }}”</blockquote>
+        <p class="small"><strong>{{ r.author }}</strong>{% if r.role %} <span class="muted">· {{ r.role }}</span>{% endif %}</p>
+      </li>
+      {%- endfor %}
+    </ul>
+  </div>
+</section>
+{%- endif %}
+
+<!-- Contact -->
 <section class="section" id="contact">
   <div class="wrap">
-    <div class="contact">
-      <div class="contact__rings" aria-hidden="true"><span></span><span></span><span></span></div>
-      <div>
-        <p class="mono small">0{{ n }}. contact</p>
-        <h2>Let’s talk enterprise platforms, AI agents, or who gets to build them.</h2>
-      </div>
-      <div class="contact__actions">
-        <a class="btn btn--dark" href="mailto:{{ site.email }}">{{ site.email }}</a>
-        <div class="contact__row">
-          <a class="btn btn--outline-dark" href="{{ site.linkedin }}" target="_blank" rel="me noopener">LinkedIn</a>
-          <a class="btn btn--outline-dark" href="{{ site.resume | relative_url }}" download>Résumé</a>
-        </div>
+    <div class="card contact">
+      <h2>Let's talk enterprise platforms, AI agents, or who gets to build them.</h2>
+      <p class="muted">I'm happy to chat about engineering, mentoring, speaking at your event, or the move from backend to AI engineering.</p>
+      <div class="btn-row">
+        <a class="btn btn--primary" href="mailto:{{ site.email }}">{{ site.email }}</a>
+        <a class="btn btn--outline" href="{{ site.linkedin }}" target="_blank" rel="me noopener">LinkedIn {% include icon.html name="external" size=14 %}</a>
+        {%- if site.resume and site.resume != "" %}<a class="btn btn--outline" href="{{ site.resume | relative_url }}" download>Résumé {% include icon.html name="download" size=14 %}</a>{% endif %}
       </div>
     </div>
   </div>

@@ -5,8 +5,8 @@ description: >-
   platforms and the AI agents on them.
 location: Amsterdam, Netherlands
 email: tanmyachandra@gmail.com
-linkedin: https://www.linkedin.com/in/YOUR-LINKEDIN-HANDLE   # TODO
-resume: /assets/Tanmya-Chandra-Resume.pdf                     # drop the PDF here
+linkedin: https://www.linkedin.com/in/tanmyachandra
+resume: ""   # e.g. /assets/Tanmya-Chandra-Resume.pdf once you add the PDF (empty hides the links)
 
 # Leave both empty for a user site (https://<username>.github.io).
 # For a project site the GitHub Actions workflow sets baseurl automatically.

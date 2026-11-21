@@ -9,17 +9,17 @@ description: Talks, writing and recommendations.
 <section class="section">
   <div class="wrap">
     <div class="section__head">
-      <p class="eyebrow">~/references</p>
+      <span class="pill">References</span>
       <h2>References</h2>
       <p class="section__aside">Talks, writing, and what people I've worked with say.</p>
     </div>
 
     {%- if refs.size == 0 %}
-    <p class="empty mono">// nothing here yet</p>
+    <p class="empty">Nothing here yet.</p>
     {%- endif %}
 
     {%- for kind in kinds %}
-    <h3 class="ref-kind mono">// {{ kind | downcase }}</h3>
+    <h3 class="ref-kind">{{ kind }}</h3>
     <ul class="ref-list">
       {%- for r in refs %}{% if r.kind == kind %}
       {%- if r.quote %}
