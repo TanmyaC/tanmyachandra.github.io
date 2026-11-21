@@ -183,6 +183,11 @@ layout: default
       <div>
         <h2>Lifting as we climb.</h2>
         <p class="wie__lede">I'm the <strong>Founder &amp; Convenor of Women in Engineering at Miro</strong>, a community I started for the <span class="hl">growth, confidence and career success</span> of women engineers.</p>
+        <ul class="goals" aria-label="What the community is for">
+          {%- for g in wie.goals %}
+          <li class="goal"><span class="icon-tile icon-tile--{{ g.tone | default: 'blue' }}">{% include icon.html name=g.icon size=18 %}</span>{{ g.name }}</li>
+          {%- endfor %}
+        </ul>
       </div>
       {%- if wie.quote.text and wie.quote.text != "" %}
       <figure class="sticky wie__quote">
@@ -195,7 +200,10 @@ layout: default
     <div class="wie__pillars">
       {%- for p in wie.pillars %}
       <div class="card wie-card{% if forloop.first %} wie-card--feature{% endif %}">
-        <span class="mono wie-card__label">{{ p.label }}</span>
+        <div class="wie-card__top">
+          <span class="icon-tile{% if forloop.first %} icon-tile--solid{% endif %}">{% include icon.html name=p.icon size=20 %}</span>
+          <span class="mono wie-card__label">{{ p.label }}</span>
+        </div>
         <h3>{{ p.title }}</h3>
         <p>{{ p.text }}</p>
       </div>
@@ -206,7 +214,10 @@ layout: default
       <div class="fig__t">Workshops I've run</div>
       <ol class="pipe">
         {%- for w in wie.workshops %}
-        <li class="node{% if forloop.index == 2 %} node--hl{% endif %}"><span class="node__who">0{{ forloop.index }}</span><span class="node__what">{{ w }}</span></li>
+        <li class="node node--icon{% if forloop.index == 2 %} node--hl{% endif %}">
+          <span class="node__icon">{% include icon.html name=w.icon size=20 %}</span>
+          <span class="node__who">0{{ forloop.index }}</span><span class="node__what">{{ w.name }}</span>
+        </li>
         {%- endfor %}
       </ol>
     </figure>

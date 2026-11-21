@@ -1,9 +1,22 @@
-pillars:
-  - { label: Founder, title: Built the community, text: "Started and lead Women in Engineering at Miro: a space for women engineers to grow, build confidence and move their careers forward." }
-  - { label: Mentor, title: Mentoring, text: "I mentor engineers to deliver high-impact initiatives with sound engineering practices." }
-  - { label: Interviewer, title: Hiring, text: "I lead system-design and graduate interview loops and write live-coding interview questions." }
+# Icons: any name defined in _includes/icon.html
+# (star, people, monitor, lock, sparkle, compass, chat, growth, shield, trophy, ...)
 
-workshops: [Authorization, AI-assisted PR reviews, Onboarding, Giving & receiving feedback]
+# The three goals shown under the intro. tone: blue | amber | green
+goals:
+  - { name: Growth, icon: growth, tone: blue }
+  - { name: Confidence, icon: shield, tone: amber }
+  - { name: Career success, icon: trophy, tone: green }
+
+pillars:
+  - { label: Founder, icon: star, title: Built the community, text: "Started and lead Women in Engineering at Miro: a space for women engineers to grow, build confidence and move their careers forward." }
+  - { label: Mentor, icon: people, title: Mentoring, text: "I mentor engineers to deliver high-impact initiatives with sound engineering practices." }
+  - { label: Interviewer, icon: monitor, title: Hiring, text: "I lead system-design and graduate interview loops and write live-coding interview questions." }
+
+workshops:
+  - { name: Authorization, icon: lock }
+  - { name: AI-assisted PR reviews, icon: sparkle }
+  - { name: Onboarding, icon: compass }
+  - { name: Giving & receiving feedback, icon: chat }
 
 # Optional sticky-note quote next to the intro. Leave text empty to hide it.
 quote:
