@@ -1,15 +1,28 @@
+{%- comment -%}
+Post cards. Per post, optional front matter:
+  icon: any name in _includes/icon.html (default: pen)
+  tone: blue | amber | green | red (default: blue)
+{%- endcomment -%}
 <ul class="post-list">
   {%- for post in include.posts limit: include.limit %}
   {%- assign href = post.url | relative_url -%}
   {%- if post.external_url %}{% assign href = post.external_url %}{% endif %}
+  {%- assign post_icon = post.icon | default: "pen" -%}
   <li>
     <a class="card post-card" href="{{ href }}"{% if post.external_url %} target="_blank" rel="noopener"{% endif %}>
-      <span class="post-card__meta">
-        {%- if post.series %}<span class="pill">{{ post.series }}</span>{% endif %}
-        <span class="mono">{{ post.date | date: "%-d %b %Y" }}{% if post.read_time %} · {{ post.read_time }}{% endif %}</span>
+      <span class="post-card__top">
+        <span class="icon-tile icon-tile--{{ post.tone | default: 'blue' }}">{% include icon.html name=post_icon size=20 %}</span>
+        <span class="post-card__meta">
+          {%- if post.series %}<span class="pill">{{ post.series }}</span>{% endif %}
+          <span class="mono">{% include icon.html name="calendar" size=13 %} {{ post.date | date: "%-d %b %Y" }}</span>
+          {%- if post.read_time %}<span class="mono">{% include icon.html name="clock" size=13 %} {{ post.read_time }}</span>{% endif %}
+        </span>
       </span>
       <h3>{{ post.title }}</h3>
       <p>{{ post.description | default: post.excerpt | strip_html | truncatewords: 32 }}</p>
+      {%- if post.tags.size > 0 %}
+      <span class="chips">{% for t in post.tags %}<span class="chip">{% include icon.html name="tag" size=12 %} {{ t }}</span>{% endfor %}</span>
+      {%- endif %}
       <span class="post-card__more">Read the post {% if post.external_url %}{% include icon.html name="external" size=14 %}{% else %}{% include icon.html name="arrow" size=14 %}{% endif %}</span>
     </a>
   </li>

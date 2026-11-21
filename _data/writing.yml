@@ -1,0 +1,8 @@
+# "Coming next" list beside the posts on the home page. Remove an entry once
+# its post is published, or delete everything below to hide the list.
+# icon: any name in _includes/icon.html · tone: blue | amber | green | red
+upcoming_title: Coming next in the series
+upcoming:
+  - { title: Adding a cache, text: "Why caching an LLM is nothing like caching an API.", icon: database, tone: green, next: true }
+  - { title: What does one interview cost?, text: "Measuring tokens, latency and money.", icon: chart, tone: amber }
+  - { title: Is my AI grader fair?, text: "Building my first evals.", icon: check, tone: red }

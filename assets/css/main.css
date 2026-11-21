@@ -264,7 +264,11 @@ a.chip--blue:hover { background: var(--blue); color: var(--on-blue); }
 .post-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 14px; }
 .post-card { display: flex; flex-direction: column; gap: 12px; height: 100%; padding: 22px; color: var(--ink); text-decoration: none; transition: transform .2s, border-color .2s; }
 .post-card:hover { color: var(--ink); border-color: var(--blue); transform: translateY(-3px); }
-.post-card__meta { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; font-size: 12.5px; color: var(--muted); }
+.post-card__top { display: flex; align-items: flex-start; gap: 12px; }
+.post-card__meta { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 12px; font-size: 12.5px; color: var(--muted); padding-top: 2px; }
+.post-card__meta .mono { display: inline-flex; align-items: center; gap: 5px; }
+.post-card .chip { display: inline-flex; align-items: center; gap: 5px; }
+.post-card .chip .icon { color: var(--faint); }
 .post-card h3 { font-size: 22px; }
 .post-card p { color: var(--muted); flex: 1; }
 .post-card__more { display: inline-flex; align-items: center; gap: 6px; font-weight: 600; color: var(--blue); }
@@ -345,3 +349,15 @@ a.chip--blue:hover { background: var(--blue); color: var(--on-blue); }
   .sticky, .sticky--r, .prose blockquote, .ref--quote { transform: none !important; }
   * { transition: none !important; }
 }
+
+/* Writing section on the home page */
+.writing { display: flex; flex-wrap: wrap; gap: 16px; align-items: flex-start; }
+.writing__posts { flex: 999 1 480px; min-width: 0; }
+.writing__next { flex: 1 1 300px; }
+.writing .post-list { grid-template-columns: 1fr; }
+.upcoming { display: flex; flex-direction: column; gap: 14px; }
+.upcoming__item { display: flex; align-items: flex-start; gap: 12px; }
+.upcoming__item .icon-tile { width: 36px; height: 36px; }
+.upcoming__item b { font: 700 15.5px/1.3 var(--display); }
+.upcoming__item .tag { margin-left: 4px; vertical-align: 2px; }
+.upcoming__text { display: block; font-size: 14px; color: var(--muted); line-height: 1.45; margin-top: 2px; }

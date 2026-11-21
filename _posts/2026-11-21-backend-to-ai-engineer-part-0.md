@@ -4,6 +4,9 @@ series: "Backend → AI Engineer · Part 0"
 description: "No PhD, no model training. One project built from scratch, what my backend habits got right, and what I had to unlearn."
 tags: [AI engineering, Design Dojo]
 read_time: 8 min read
+# Card icon (any name in _includes/icon.html) and colour: blue | amber | green | red
+icon: route
+tone: blue
 # Published elsewhere: cards link straight to this URL. Remove it to host the post here instead.
 external_url: https://claude.ai/artifact/3hKEAzibp3bXky6btguDUP
 ---

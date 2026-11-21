@@ -1,0 +1,18 @@
+{%- comment -%}Posts plus the "coming next" list from _data/writing.yml. include writing.html limit=3{%- endcomment -%}
+{%- assign wr = site.data.writing %}
+<div class="writing">
+  <div class="writing__posts">{% include post-list.html posts=site.posts limit=include.limit %}</div>
+  {%- if wr.upcoming.size > 0 %}
+  <figure class="fig writing__next">
+    <div class="fig__t">{{ wr.upcoming_title }}</div>
+    <ol class="upcoming">
+      {%- for u in wr.upcoming %}
+      <li class="upcoming__item">
+        <span class="icon-tile icon-tile--{{ u.tone | default: 'blue' }}">{% include icon.html name=u.icon size=18 %}</span>
+        <span><b>{{ u.title }}</b>{% if u.next %} <span class="tag">next</span>{% endif %}<span class="upcoming__text">{{ u.text }}</span></span>
+      </li>
+      {%- endfor %}
+    </ol>
+  </figure>
+  {%- endif %}
+</div>
